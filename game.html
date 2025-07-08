@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 Solver Game - Make 24 Online Calculator</title>
+    <meta name="description" content="24 Solver Game is a free online calculator to find all possible ways to make 24 from four numbers using +, -, ×, ÷. Instantly solve, generate random puzzles, and copy solutions.">
+    <link rel="icon" href="https://www.wordle.org/favicon.ico">
+    <style>
+        body, html {
+            margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa; color: #222;
+        }
+        .main-wrap {
+            max-width: 900px; margin: 24px auto 0; background: #fff; border-radius: 18px; box-shadow: 0 2px 12px #0001;
+            padding: 28px 5vw 38px; position: relative;
+        }
+        .logo-bar {
+            display: flex; align-items: center; gap: 16px; margin-bottom: 8px;
+        }
+        .logo-bar img { width: 44px; height: 44px; }
+        .brand-title { font-size: 2rem; font-weight: bold; letter-spacing: 1px; color: #388e3c; }
+        .subtitle { color: #666; font-size: 1.07rem; margin-bottom: 16px; }
+        .input-container { display: flex; gap: 10px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap;}
+        .input-container input {
+            width: 55px; height: 55px; font-size: 1.5rem; text-align: center;
+            border-radius: 9px; border: 2px solid #ddd; transition: 0.25s;
+        }
+        .input-container input:focus {
+            border-color: #388e3c; box-shadow: 0 0 6px #81c784aa;
+        }
+        .button-container { margin-top: 8px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;}
+        .btn, .reset-button, .copy-btn {
+            padding: 12px 24px; font-size: 1rem; border-radius: 6px; border: none; cursor: pointer;
+            transition: background 0.22s, box-shadow 0.2s, transform 0.1s;
+        }
+        .btn, .copy-btn { background: #388e3c; color: #fff; }
+        .btn:hover, .copy-btn:hover { background: #236c26;}
+        .reset-button { background: #e53935; color: #fff; }
+        .reset-button:hover { background: #c62828;}
+        .solutions { margin-top: 32px; text-align: center;}
+        .total-solutions { font-weight: bold; margin-bottom: 15px; color: #388e3c; font-size: 1.25rem;}
+        .solution-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 13px; margin: 0 auto 0; padding: 0; list-style: none; max-width: 95vw;
+        }
+        .solution-list li {
+            background: #f2fdf5; border-radius: 7px; padding: 9px 3px;
+            border: 1.2px solid #c5e1a5; min-height: 42px; font-size: 1.05rem;
+            display: flex; align-items: center; justify-content: center;
+            word-break: break-all; transition: background 0.16s;
+        }
+        .solution-list li:hover { background: #e0f2f1; }
+        .copy-btn { margin: 0 0 15px 8px; padding: 8px 13px; font-size: 0.95rem;}
+        .tools-row { margin: 20px 0 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .tools-row .lang-btn {
+            border: none; background: #f1f8e9; color: #388e3c; font-size: 0.98rem; border-radius: 4px;
+            padding: 6px 10px; cursor: pointer;
+        }
+        .tools-row .lang-btn:hover { background: #dcedc8; }
+        .game-links-bar { margin: 40px 0 10px; text-align: center; }
+        .game-links-bar h3 { color: #4CAF50; margin-bottom: 7px; }
+        .game-links-bar a {
+            display: inline-block; background: #f2f2f2; color: #444; margin: 5px 8px 0 0; border-radius: 5px;
+            padding: 7px 18px; font-size: 1rem; text-decoration: none; transition: background 0.18s;
+        }
+        .game-links-bar a:hover { background: #e0f2f1;}
+        .faq { background: #f9fbe7; border-radius: 10px; padding: 20px 18px 5px; margin: 28px 0 22px;}
+        .faq h3 { margin: 0 0 8px; color: #388e3c; }
+        .faq dt { font-weight: bold; margin: 14px 0 3px; }
+        .faq dd { margin: 0 0 10px 0; color: #444;}
+        .footer-seo { font-size: 0.98rem; color: #888; margin: 36px 0 14px; line-height: 1.7; text-align: center;}
+        .footer { font-size: 0.9rem; color: #999; text-align: center; margin: 22px 0 0; }
+        @media (max-width: 650px) {
+            .main-wrap { padding: 14px 3vw 18px;}
+            .brand-title { font-size: 1.4rem; }
+            .solution-list { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); font-size: 0.92rem;}
+            .input-container input { width: 38px; height: 38px; font-size: 1.1rem;}
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrap">
+        <!-- LOGO+Brand -->
+        <div class="logo-bar">
+            <img src="https://img.icons8.com/doodle/48/000000/circled-4.png" alt="logo">
+            <span class="brand-title">24 Solver Game</span>
+        </div>
+        <div class="subtitle">
+            <span>Enter any four numbers between 1 and 13. Instantly find all solutions to make 24 using +, -, ×, ÷.</span>
+            <br>
+            <span style="color:#777; font-size:0.97rem"><b>Quick, simple, and free!</b></span>
+        </div>
+
+        <!-- Language Switch (future use, can hide) -->
+        <div class="tools-row">
+            <button class="lang-btn" onclick="alert('Coming soon')">English</button>
+            <button class="lang-btn" onclick="alert('Coming soon')">中文</button>
+        </div>
+        
+        <!-- Input Area -->
+        <form onsubmit="event.preventDefault(); solve();">
+            <div class="input-container">
+                <input type="number" id="num1" min="1" max="13" placeholder="1" required>
+                <input type="number" id="num2" min="1" max="13" placeholder="2" required>
+                <input type="number" id="num3" min="1" max="13" placeholder="3" required>
+                <input type="number" id="num4" min="1" max="13" placeholder="4" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn">Solve</button>
+                <button type="button" class="btn" onclick="generateRandomNumbers()">Random</button>
+                <button type="button" class="reset-button" onclick="resetGame()" style="display:none;">Reset</button>
+            </div>
+        </form>
+        <!-- Copy Button -->
+        <div class="tools-row">
+            <button class="copy-btn" onclick="copyResult()">Copy Puzzle & Solutions</button>
+        </div>
+
+        <!-- Solution Output -->
+        <div class="solutions" id="solutions"></div>
+
+        <!-- FAQ & SEO Section -->
+        <div class="faq">
+            <h3>How to Play & FAQ</h3>
+            <dl>
+                <dt>How to play?</dt>
+                <dd>Enter four integers between 1 and 13, click "Solve", and the system will calculate all possible formulas to make 24.</dd>
+                <dt>What operations are supported?</dt>
+                <dd>Supports addition, subtraction, multiplication, and division. Parentheses and order of operations are handled automatically.</dd>
+                <dt>What if there is no solution?</dt>
+                <dd>Some number sets have no solution. If so, you’ll see "No solutions for these numbers." Try "Random" for a new puzzle!</dd>
+                <dt>Can I share my results?</dt>
+                <dd>Click "Copy Puzzle & Solutions" to copy everything. Share in group chats, social media, or challenge your friends!</dd>
+                <dt>How to boost SEO?</dt>
+                <dd>Expand the FAQ and instructions. Use keywords like "24 solver", "make 24 calculator", and "24 game online" to help more people find your tool.</dd>
+            </dl>
+        </div>
+
+        <!-- Other Brain Games - Card Grid Style -->
+<div style="margin: 40px 0 10px; text-align: center;">
+    <h3 style="color:#43a047; font-size:1.3rem; margin-bottom:18px; font-weight:700; letter-spacing:1px;">
+        Other Brain Games
+    </h3>
+    <div style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap:22px;
+        justify-content:center;
+        max-width:760px;
+        margin:0 auto;
+    ">
+        <!-- Card 1 -->
+        <div style="background:#fafcff; border-radius:13px; box-shadow:0 2px 9px #0001; padding:22px 10px 16px; border:1px solid #ececec;">
+            <img src="https://img.icons8.com/color/48/wordle.png" alt="Wordle" style="margin-bottom:7px;">
+            <div style="font-size:1.12rem; font-weight:600;">Wordle</div>
+            <div style="font-size:0.95rem; color:#555; margin-bottom:10px;">Guess the word in 6 tries</div>
+            <a href="https://www.wordle.org/" target="_blank" style="
+                background:#388e3c; color:#fff; font-weight:500; border-radius:6px;
+                text-decoration:none; padding:8px 28px; display:inline-block; margin-top:6px;
+                transition:.2s; border:none;
+            ">Play</a>
+        </div>
+        <!-- Card 2 -->
+        <div style="background:#fafcff; border-radius:13px; box-shadow:0 2px 9px #0001; padding:22px 10px 16px; border:1px solid #ececec;">
+            <img src="https://img.icons8.com/color/48/sudoku.png" alt="Sudoku" style="margin-bottom:7px;">
+            <div style="font-size:1.12rem; font-weight:600;">Sudoku</div>
+            <div style="font-size:0.95rem; color:#555; margin-bottom:10px;">Classic number puzzle</div>
+            <a href="https://sudoku.com/" target="_blank" style="
+                background:#388e3c; color:#fff; font-weight:500; border-radius:6px;
+                text-decoration:none; padding:8px 28px; display:inline-block; margin-top:6px;
+                transition:.2s; border:none;
+            ">Play</a>
+        </div>
+        <!-- Card 3 -->
+        <div style="background:#fafcff; border-radius:13px; box-shadow:0 2px 9px #0001; padding:22px 10px 16px; border:1px solid #ececec;">
+            <img src="https://img.icons8.com/color/48/2048.png" alt="2048" style="margin-bottom:7px;">
+            <div style="font-size:1.12rem; font-weight:600;">2048</div>
+            <div style="font-size:0.95rem; color:#555; margin-bottom:10px;">Slide & combine numbers</div>
+            <a href="https://play2048.co/" target="_blank" style="
+                background:#388e3c; color:#fff; font-weight:500; border-radius:6px;
+                text-decoration:none; padding:8px 28px; display:inline-block; margin-top:6px;
+                transition:.2s; border:none;
+            ">Play</a>
+        </div>
+        <!-- Card 4 -->
+        <div style="background:#fafcff; border-radius:13px; box-shadow:0 2px 9px #0001; padding:22px 10px 16px; border:1px solid #ececec;">
+            <img src="https://img.icons8.com/color/48/math.png" alt="Math 24" style="margin-bottom:7px;">
+            <div style="font-size:1.12rem; font-weight:600;">Math 24 (English)</div>
+            <div style="font-size:0.95rem; color:#555; margin-bottom:10px;">Classic 24 card game</div>
+            <a href="https://www.mathplayground.com/logic24.html" target="_blank" style="
+                background:#388e3c; color:#fff; font-weight:500; border-radius:6px;
+                text-decoration:none; padding:8px 28px; display:inline-block; margin-top:6px;
+                transition:.2s; border:none;
+            ">Play</a>
+        </div>
+    </div>
+</div>
+
+        <!-- SEO Text -->
+        <div class="footer-seo">
+            24 Solver Game is your free online tool for making 24 with four numbers. Instantly find all solutions, generate random puzzles, and share results. Great for math practice, puzzle training, and entertainment. Works perfectly on desktop and mobile!
+        </div>
+        <div class="footer">
+            &copy; 2024 24 Solver Game | <a href="mailto:admin@example.com" style="color:#81c784;">Feedback</a>
+        </div>
+    </div>
+    <script>
+        const TARGET = 24;
+        const OP_FUNCTIONS = {
+            '+': (a, b) => a + b,
+            '-': (a, b) => a - b,
+            '*': (a, b) => a * b,
+            '/': (a, b) => b !== 0 ? a / b : NaN
+        };
+        const OP_SYMBOLS = ['+', '-', '*', '/'];
+
+        function generateRandomNumbers() {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`num${i}`).value = Math.floor(Math.random() * 13) + 1;
+            }
+            solve();
+        }
+
+        function solve() {
+            const inputs = [
+                document.getElementById('num1').value,
+                document.getElementById('num2').value,
+                document.getElementById('num3').value,
+                document.getElementById('num4').value
+            ].map(Number);
+            // Validation
+            if (!inputs.every(n => Number.isInteger(n) && n >= 1 && n <= 13)) {
+                alert("Please enter four integers between 1 and 13!");
+                return;
+            }
+            if (inputs.some(isNaN)) {
+                alert("Please enter all four numbers!");
+                return;
+            }
+            const solutions = find24Solutions(inputs);
+            const uniqueSolutions = [...new Set(solutions)].sort((a, b) => a.length - b.length);
+
+            const solutionsDiv = document.getElementById('solutions');
+            const displayInputs = inputs.join(', ');
+            let solutionHTML = `<div class="total-solutions">Found <span style="color:#2e7d32;">${uniqueSolutions.length}</span> solutions for [${displayInputs}]</div>`;
+            if (uniqueSolutions.length > 0) {
+                solutionHTML += "<ul class='solution-list'>";
+                uniqueSolutions.forEach(solution => {
+                    solutionHTML += `<li>${solution}</li>`;
+                });
+                solutionHTML += "</ul>";
+            } else {
+                solutionHTML += "<p style='color:#f44336;'>No solutions for these numbers.</p>";
+            }
+            solutionsDiv.innerHTML = solutionHTML;
+            document.querySelector('.reset-button').style.display = 'inline-block';
+        }
+
+        function resetGame() {
+            for (let i = 1; i <= 4; i++) document.getElementById(`num${i}`).value = '';
+            document.getElementById('solutions').innerHTML = '';
+            document.querySelector('.reset-button').style.display = 'none';
+        }
+
+        // 24 Solver Logic
+        function find24Solutions(nums) {
+            const results = new Set();
+            function solveRecursive(currentNumbers, currentExpressions) {
+                if (currentNumbers.length === 1) {
+                    if (Math.abs(currentNumbers[0] - TARGET) < 1e-9) {
+                        results.add(currentExpressions[0]);
+                    }
+                    return;
+                }
+                for (let i = 0; i < currentNumbers.length; i++) {
+                    for (let j = 0; j < currentNumbers.length; j++) {
+                        if (i === j) continue;
+                        const num1 = currentNumbers[i], exp1 = currentExpressions[i];
+                        const num2 = currentNumbers[j], exp2 = currentExpressions[j];
+                        const nextNumbers = [], nextExpressions = [];
+                        for (let k = 0; k < currentNumbers.length; k++) {
+                            if (k !== i && k !== j) {
+                                nextNumbers.push(currentNumbers[k]);
+                                nextExpressions.push(currentExpressions[k]);
+                            }
+                        }
+                        for (const op of OP_SYMBOLS) {
+                            if (op === '/' && num2 === 0) continue;
+                            const newValue = OP_FUNCTIONS[op](num1, num2);
+                            if (op === '/' && !Number.isInteger(newValue) && Math.abs(newValue) > 0) continue;
+                            let newExpression = `(${exp1} ${op} ${exp2})`;
+                            solveRecursive(nextNumbers.concat(newValue), nextExpressions.concat(newExpression));
+                        }
+                    }
+                }
+            }
+            solveRecursive(nums, nums.map(String));
+            return Array.from(results);
+        }
+
+        // Copy results to clipboard
+        function copyResult() {
+            const inputs = [1,2,3,4].map(i => document.getElementById('num'+i).value).join(', ');
+            const solDiv = document.getElementById('solutions');
+            let text = "24 Solver Puzzle: " + inputs + "\n";
+            if (solDiv.innerText) {
+                text += solDiv.innerText.replace(/\n{2,}/g, "\n");
+            }
+            navigator.clipboard.writeText(text)
+                .then(() => { alert('Puzzle & solutions copied! You can paste and share anywhere.'); })
+                .catch(() => { alert('Copy failed, please select and copy manually.'); });
+        }
+    </script>
+</body>
+</html>
