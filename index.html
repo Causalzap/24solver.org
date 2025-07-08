@@ -30,98 +30,24 @@
             font-size: 1.15rem;
         }
         .container {
-            max-width: 1200px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 36px 2vw 0 2vw;
         }
-        .main-flex {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            margin-bottom: 28px;
-        }
-        @media (max-width: 950px) {
-            .main-flex {
-                flex-direction: column;
-                gap: 0;
-            }
-            .brain-games-grid {
-                margin: 0 auto 28px auto;
-            }
-        }
-        /* Game block */
-        .game-section {
-            flex: 2 1 630px;
+        section {
             background: #fff;
-            border-radius: 14px;
+            border-radius: 13px;
             box-shadow: 0 2px 12px #0001;
             margin-bottom: 32px;
-            padding: 36px 24px 28px 24px;
+            padding: 28px 24px 24px 24px;
         }
-        .game-section h2 {
-            margin-top: 0;
-            font-size: 1.44rem;
-            margin-bottom: 22px;
+        /* 推荐游戏 */
+        #other-brain-games {
+            margin-bottom: 32px;
         }
-        .iframe-wrap {
-            width: 100%;
-            min-height: 325px;
-            background: #fafafa;
-            border-radius: 12px;
-            box-shadow: 0 1px 6px #0001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 22px;
-            padding: 18px 0 12px 0;
-        }
-        .iframe-wrap iframe {
-            width: 420px;
-            height: 230px;
-            border: none;
-            border-radius: 10px;
-            background: #fff;
-            box-shadow: 0 2px 7px #0001;
-            min-width: 260px;
-            min-height: 180px;
-        }
-        @media (max-width: 600px) {
-            .iframe-wrap iframe {
-                width: 100vw;
-                min-width: 0;
-                height: 210px;
-            }
-        }
-        .cta-bar {
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .cta-btn {
-            background: #388e3c;
-            color: #fff;
-            font-size: 1.11rem;
-            border: none;
-            border-radius: 6px;
-            padding: 11px 35px;
-            margin-top: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.18s;
-        }
-        .cta-btn:hover { background: #276a2d; }
-        /* 推荐区块 */
-        .brain-games-grid {
-            flex: 1 1 320px;
-            background: #fff;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px #0001;
-            padding: 22px 18px 20px 18px;
-            margin-top: 0;
-            margin-bottom: 40px;
-        }
-        .brain-games-grid h3 {
+        #other-brain-games h2 {
             color: #43a047;
-            font-size: 1.32rem;
+            font-size: 1.35rem;
             margin-bottom: 18px;
             font-weight: 700;
             letter-spacing: 1px;
@@ -130,7 +56,7 @@
         .brain-games-flex {
             display: flex;
             flex-wrap: wrap;
-            gap: 13px 9px;
+            gap: 15px 12px;
             justify-content: center;
         }
         .brain-card {
@@ -172,14 +98,71 @@
         }
         .brain-card a:hover { background: #276a2d; }
 
-        /* 介绍、规则、说明区块 */
-        section {
+        /* 24solver主区块 */
+        .game-section {
             background: #fff;
-            border-radius: 13px;
+            border-radius: 14px;
             box-shadow: 0 2px 12px #0001;
             margin-bottom: 32px;
-            padding: 28px 24px 24px 24px;
+            padding: 36px 24px 28px 24px;
+            text-align: center;
         }
+        .game-section h2 {
+            margin-top: 0;
+            font-size: 1.44rem;
+            margin-bottom: 22px;
+            text-align: center;
+        }
+        .iframe-wrap {
+            width: 100%;
+            min-height: 325px;
+            background: #fafafa;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px #0001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            padding: 18px 0 12px 0;
+        }
+        .iframe-wrap iframe {
+            width: 420px;
+            height: 230px;
+            border: none;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 2px 7px #0001;
+            min-width: 260px;
+            min-height: 180px;
+        }
+        @media (max-width: 600px) {
+            .iframe-wrap iframe {
+                width: 100vw;
+                min-width: 0;
+                height: 210px;
+            }
+        }
+        .cta-bar {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .cta-btn, .main-btn {
+            background: #388e3c;
+            color: #fff;
+            font-size: 1.11rem;
+            border: none;
+            border-radius: 6px;
+            padding: 11px 35px;
+            margin-top: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.18s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .cta-btn:hover, .main-btn:hover { background: #276a2d; }
+
+        /* 介绍、规则、说明区块 */
         h2 {
             color: #1c2833;
             margin-top: 0;
@@ -227,6 +210,11 @@
             font-size:0.97rem;
             margin:32px 0 14px;
         }
+        /* 响应式：section和iframe自适应 */
+        @media (max-width: 800px) {
+            .container { padding: 18px 1vw 0 1vw; }
+            section, .game-section { padding: 18px 6px 14px 6px; }
+        }
     </style>
 </head>
 <body>
@@ -237,48 +225,48 @@
         </div>
     </header>
     <div class="container">
-        <div class="main-flex">
-            <!-- 左侧：游戏及说明 -->
-            <div class="game-section">
-                <h2>🎮 Play 24Solver Online</h2>
-                <div class="iframe-wrap">
-                    <iframe src="/game.html" title="24Solver Game" allowfullscreen></iframe>
+
+        <!-- 推荐游戏 -->
+        <section id="other-brain-games">
+            <h2>Play Other Brain Games</h2>
+            <div class="brain-games-flex">
+                <div class="brain-card">
+                    <img src="https://img.icons8.com/fluency/48/wordle.png" alt="Wordle">
+                    <div class="title">Wordle</div>
+                    <div class="desc">Guess the word in 6 tries</div>
+                    <a href="https://www.wordle.org/" target="_blank">Play</a>
                 </div>
-                <div class="cta-bar">
-                    <a href="#rules"><button class="cta-btn">Learn Game Rules</button></a>
+                <div class="brain-card">
+                    <img src="https://img.icons8.com/fluency/48/sudoku.png" alt="Sudoku">
+                    <div class="title">Sudoku</div>
+                    <div class="desc">Classic number puzzle</div>
+                    <a href="https://sudoku.com/" target="_blank">Play</a>
                 </div>
-            </div>
-            <!-- 右侧：其他益智游戏 -->
-            <div class="brain-games-grid">
-                <h3>Other Brain Games</h3>
-                <div class="brain-games-flex">
-                    <div class="brain-card">
-                        <img src="https://img.icons8.com/fluency/48/wordle.png" alt="Wordle">
-                        <div class="title">Wordle</div>
-                        <div class="desc">Guess the word in 6 tries</div>
-                        <a href="https://www.wordle.org/" target="_blank">Play</a>
-                    </div>
-                    <div class="brain-card">
-                        <img src="https://img.icons8.com/fluency/48/sudoku.png" alt="Sudoku">
-                        <div class="title">Sudoku</div>
-                        <div class="desc">Classic number puzzle</div>
-                        <a href="https://sudoku.com/" target="_blank">Play</a>
-                    </div>
-                    <div class="brain-card">
-                        <img src="https://img.icons8.com/fluency/48/2048.png" alt="2048">
-                        <div class="title">2048</div>
-                        <div class="desc">Slide & combine numbers</div>
-                        <a href="https://play2048.co/" target="_blank">Play</a>
-                    </div>
-                    <div class="brain-card">
-                        <img src="https://img.icons8.com/color/48/math.png" alt="Math 24">
-                        <div class="title">Math 24 (English)</div>
-                        <div class="desc">Classic 24 card game</div>
-                        <a href="https://www.mathplayground.com/logic24.html" target="_blank">Play</a>
-                    </div>
+                <div class="brain-card">
+                    <img src="https://img.icons8.com/fluency/48/2048.png" alt="2048">
+                    <div class="title">2048</div>
+                    <div class="desc">Slide & combine numbers</div>
+                    <a href="https://play2048.co/" target="_blank">Play</a>
+                </div>
+                <div class="brain-card">
+                    <img src="https://img.icons8.com/color/48/math.png" alt="Math 24">
+                    <div class="title">Math 24 (English)</div>
+                    <div class="desc">Classic 24 card game</div>
+                    <a href="https://www.mathplayground.com/logic24.html" target="_blank">Play</a>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 主游戏区块 -->
+        <section class="game-section">
+            <h2>🎮 Play 24Solver Online</h2>
+            <div class="iframe-wrap">
+                <iframe src="/game.html" title="24Solver Game" allowfullscreen></iframe>
+            </div>
+            <div class="cta-bar">
+                <a href="#rules"><button class="cta-btn">Learn Game Rules</button></a>
+            </div>
+        </section>
 
         <!-- 游戏说明/SEO区块 -->
         <section id="about-24solver">
@@ -392,7 +380,7 @@
                 Start using <b>24Solver</b> now and join thousands of puzzle lovers worldwide!
             </p>
         </section>
-        <div class="cta-bar">
+        <div class="cta-bar" style="margin-bottom:32px;">
             <a href="/game.html" class="main-btn">Play Now – Try 24Solver!</a>
         </div>
         <footer>
