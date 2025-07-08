@@ -148,6 +148,41 @@
             margin: 0 0 10px 0;
             color: #3a4753;
         }
+        .brain-games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 22px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto 18px;
+        }
+        .brain-card {
+            background: #fafcff;
+            border-radius: 13px;
+            box-shadow: 0 2px 9px #0001;
+            padding: 22px 10px 16px;
+            border: 1px solid #ececec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow .22s;
+        }
+        .brain-card img {
+            margin-bottom: 7px;
+            width: 48px; height: 48px;
+        }
+        .brain-card .title {
+            font-size: 1.12rem; font-weight: 600;
+        }
+        .brain-card .desc {
+            font-size: 0.95rem; color: #555; margin-bottom: 10px;
+        }
+        .brain-card a {
+            background: #388e3c; color: #fff; font-weight: 500; border-radius: 6px;
+            text-decoration: none; padding: 8px 28px; display: inline-block; margin-top: 6px;
+            transition: .2s; border: none;
+        }
+        .brain-card a:hover { background: #2d7a2a;}
         @media (max-width: 780px) {
             header { padding: 24px 0 14px; }
             section { padding: 26px 8px 18px 8px; }
@@ -165,132 +200,4 @@
 
         <!-- Game Section -->
         <section id="play-24solver">
-            <h2>🎮 Play 24Solver Online</h2>
-            <div class="iframe-wrap">
-                <iframe src="/game.html" title="24Solver Game" allowfullscreen></iframe>
-            </div>
-            <div class="cta-bar">
-                <a href="#rules"><button class="cta-btn">Learn Game Rules</button></a>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="about-24solver">
-            <h2>What is 24Solver?</h2>
-            <p>
-                <strong>24Solver</strong> is a free, fast, and interactive web app for the 24 Points Game (also known as "Make 24" or "24 Game").
-                Enter any four numbers, and 24Solver will instantly show you all possible solutions to make 24 using addition, subtraction, multiplication, and division. Practice, play, and challenge your friends online!
-            </p>
-            <ul class="features-list">
-                <li>Instantly solves any Make 24 puzzle with 4 numbers (1-13)</li>
-                <li>Mobile & desktop friendly, no download required</li>
-                <li>Explains all solution steps for learning and fun</li>
-                <li>Random puzzle generator & shareable results</li>
-                <li>Great for students, teachers, math lovers, and puzzle fans</li>
-            </ul>
-        </section>
-
-        <!-- Rules Section -->
-        <section id="rules">
-            <h2>How to Play 24Solver – Rules & Gameplay</h2>
-            <h3>Game Rules</h3>
-            <ul class="rules-list">
-                <li>You are given <b>4 numbers</b> (between 1 and 13) in each round.</li>
-                <li>Your goal is to use <b>addition (+), subtraction (−), multiplication (×), division (÷)</b> to make exactly <b>24</b>.</li>
-                <li>You must use <b>each number exactly once</b>. Brackets and any operation order are allowed.</li>
-                <li>All intermediate results must be valid (no division by zero).</li>
-                <li>Multiple solutions are possible; find as many as you can!</li>
-            </ul>
-            <h3>Example</h3>
-            <p>
-                Suppose the numbers are <b>2, 3, 4, 6</b>. One possible solution is: <br>
-                <code>(6 / (1 - (3 / 4))) = 24</code>
-            </p>
-        </section>
-
-        <!-- Scoring Section -->
-        <section id="scoring">
-            <h2>Scoring System & Game Modes</h2>
-            <p>
-                <strong>24Solver</strong> lets you play for fun or challenge yourself in different scoring modes:
-            </p>
-            <table class="score-table">
-                <tr>
-                    <th>Mode</th>
-                    <th>How It Works</th>
-                    <th>Points</th>
-                </tr>
-                <tr>
-                    <td>Classic</td>
-                    <td>Find at least one valid solution</td>
-                    <td>+10</td>
-                </tr>
-                <tr>
-                    <td>Speed</td>
-                    <td>Solve within 60 seconds</td>
-                    <td>+20</td>
-                </tr>
-                <tr>
-                    <td>All Solutions</td>
-                    <td>Find every possible way to make 24</td>
-                    <td>+30</td>
-                </tr>
-                <tr>
-                    <td>Share</td>
-                    <td>Share your solution with friends</td>
-                    <td>+5</td>
-                </tr>
-            </table>
-            <ul class="tips-list">
-                <li>Challenge yourself to find multiple solutions for bonus points!</li>
-                <li>Share your game and invite friends for friendly competition.</li>
-            </ul>
-        </section>
-
-        <!-- FAQ / Tips Section -->
-        <section id="faq">
-            <h2>FAQ & Strategy Tips</h2>
-            <dl class="faq-list">
-                <dt>What is the best strategy to solve 24Solver puzzles?</dt>
-                <dd>
-                    Try combining large numbers first, use multiplication/division before addition/subtraction, and look for patterns. Practice is key!
-                </dd>
-                <dt>Can I use negative or fractional numbers?</dt>
-                <dd>
-                    Only positive integers (1-13) are allowed for inputs. Fractional results are allowed in intermediate steps.
-                </dd>
-                <dt>Is 24Solver free to use?</dt>
-                <dd>
-                    Yes! 24Solver is 100% free for everyone, no signup or download required.
-                </dd>
-                <dt>How can I share my puzzle or solution?</dt>
-                <dd>
-                    Use the "Copy" button in the game to share your puzzle and solutions on social media, chat, or email.
-                </dd>
-                <dt>Can I play on mobile devices?</dt>
-                <dd>
-                    Absolutely! 24Solver is fully responsive and works on all phones, tablets, and computers.
-                </dd>
-            </dl>
-        </section>
-
-        <!-- SEO Section -->
-        <section id="seo-text">
-            <h2>About 24Solver.org – The Best Make 24 Online Solver</h2>
-            <p>
-                <b>24Solver.org</b> is your one-stop website for playing and solving the 24 Points Game online. Whether you are practicing for math competitions, training your brain, or just looking for fun, our Make 24 solver helps you find all possible solutions instantly. <br>
-                Play unlimited Make 24 puzzles, learn the official rules, discover smart strategies, and improve your math skills – all on one modern, easy-to-use site. <br>
-                Start using <b>24Solver</b> now and join thousands of puzzle lovers worldwide!
-            </p>
-        </section>
-
-        <!-- Call to Action -->
-        <div class="cta-bar">
-            <a href="#play-24solver"><button class="cta-btn">Play Now – Try 24Solver!</button></a>
-        </div>
-        <footer style="text-align:center; color:#888; font-size:0.97rem; margin:32px 0 14px;">
-            &copy; 2024 24Solver.org &nbsp;|&nbsp; All rights reserved.
-        </footer>
-    </div>
-</body>
-</html>
+            <
