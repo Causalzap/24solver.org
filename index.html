@@ -1,248 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>24Solver – Make 24 Online | Free 24 Points Game & Solver</title>
-    <meta name="description" content="24Solver is a free online 24 points game and solver. Instantly find all solutions for making 24 using four numbers. Play, learn rules, and challenge your brain with the best Make 24 web app!">
-    <meta name="viewport" content="width=900, initial-scale=1">
-    <link rel="icon" href="/favicon.ico">
-    <meta property="og:title" content="24Solver – Make 24 Online | Free 24 Points Game & Solver">
-    <meta property="og:description" content="Play the classic 24 points game online with 24Solver. Enter any four numbers and instantly find all solutions to make 24. Enjoy rules, scoring, and the smartest way to challenge your mind!">
-    <meta property="og:url" content="https://www.24solver.org/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://www.24solver.org/logo192.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>24Solver – Make 24 Online Game & Solver</title>
+    <meta name="description" content="Play the classic 24 Points Game online! Instantly solve and master Make 24 puzzles with 24Solver – your smartest online 24 game & calculator!" />
     <style>
-        :root {
-            --main-bg: #f5f7fb;
-            --card-bg: #fff;
-            --primary: #308e3c;
-            --accent: #1976d2;
-            --section-bg: #f0f4f8;
-            --text-main: #263238;
-            --heading: #222;
-            --border: #e0e5ec;
-            --shadow: 0 2px 12px #0001;
-            --radius: 16px;
-        }
-        html, body {
-            margin: 0; padding: 0;
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--main-bg);
-            color: var(--text-main);
+            background: #f5f7fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
         }
-        a { color: var(--accent); text-decoration: none;}
-        a:hover { text-decoration: underline; }
         header {
-            background: var(--card-bg);
-            padding: 36px 0 24px;
-            box-shadow: var(--shadow);
+            background: #fff;
+            padding: 32px 0 12px 0;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
-        .brand-title {
-            font-size: 2.7rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 7px;
+        header h1 {
+            color: #43a047;
+            font-size: 2.3rem;
+            margin-bottom: 8px;
             letter-spacing: 1px;
         }
         .subtitle {
             color: #444;
             font-size: 1.15rem;
-            margin-bottom: 12px;
         }
         .container {
-            max-width: 890px;
-            margin: 24px auto;
-            padding: 0 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 36px 2vw 0 2vw;
         }
-        section {
-            background: var(--section-bg);
-            border-radius: var(--radius);
+        .main-flex {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 28px;
+        }
+        @media (max-width: 950px) {
+            .main-flex {
+                flex-direction: column;
+                gap: 0;
+            }
+            .brain-games-grid {
+                margin: 0 auto 28px auto;
+            }
+        }
+        /* Game block */
+        .game-section {
+            flex: 2 1 630px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0001;
             margin-bottom: 32px;
-            box-shadow: var(--shadow);
-            padding: 36px 30px 28px 30px;
+            padding: 36px 24px 28px 24px;
         }
-        h2 {
-            font-size: 1.65rem;
+        .game-section h2 {
             margin-top: 0;
-            color: var(--heading);
-            letter-spacing: 1px;
-        }
-        h3 {
-            color: var(--primary);
-            margin-bottom: 7px;
-            font-size: 1.23rem;
+            font-size: 1.44rem;
+            margin-bottom: 22px;
         }
         .iframe-wrap {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 18px 10px 10px 10px;
-            box-shadow: var(--shadow);
-            margin: 0 auto 28px auto;
-            display: flex; justify-content: center;
+            width: 100%;
+            min-height: 325px;
+            background: #fafafa;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px #0001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            padding: 18px 0 12px 0;
         }
         .iframe-wrap iframe {
+            width: 420px;
+            height: 230px;
             border: none;
-            width: 100%;
-            min-width: 350px;
-            max-width: 660px;
-            height: 560px;
-            border-radius: 12px;
+            border-radius: 10px;
             background: #fff;
-            box-shadow: 0 1px 10px #0e77430c;
-            transition: box-shadow .2s;
+            box-shadow: 0 2px 7px #0001;
+            min-width: 260px;
+            min-height: 180px;
         }
-        .features-list, .rules-list, .tips-list {
-            list-style: disc inside;
-            margin: 12px 0 0 14px;
-            color: #444;
-            font-size: 1.08rem;
-        }
-        .score-table {
-            width: 90%; max-width: 420px; margin: 18px auto 0 auto;
-            border-collapse: collapse;
-            background: #fff;
-            border-radius: 9px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        .score-table th, .score-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #e0e5ec;
-            text-align: center;
-        }
-        .score-table th {
-            background: #e3f5e9;
-            color: var(--primary);
-        }
-        .score-table tr:last-child td {
-            border-bottom: none;
+        @media (max-width: 600px) {
+            .iframe-wrap iframe {
+                width: 100vw;
+                min-width: 0;
+                height: 210px;
+            }
         }
         .cta-bar {
             text-align: center;
-            margin: 36px 0 16px;
+            margin-bottom: 8px;
         }
         .cta-btn {
-            background: linear-gradient(90deg, var(--primary), #27ae60 90%);
+            background: #388e3c;
             color: #fff;
-            font-size: 1.25rem;
-            font-weight: bold;
+            font-size: 1.11rem;
             border: none;
-            border-radius: 8px;
-            padding: 14px 44px;
-            margin: 0 auto;
+            border-radius: 6px;
+            padding: 11px 35px;
+            margin-top: 5px;
             cursor: pointer;
-            transition: background .18s, box-shadow .18s;
-            box-shadow: 0 4px 14px #18bb6616;
+            font-weight: bold;
+            transition: background 0.18s;
         }
-        .cta-btn:hover {
-            background: linear-gradient(90deg, #27ae60, var(--primary) 80%);
-            box-shadow: 0 2px 10px #18bb6620;
-        }
-        .faq-list dt {
-            font-weight: 600;
-            color: var(--accent);
-            margin-top: 17px;
-        }
-        .faq-list dd {
-            margin: 0 0 10px 0;
-            color: #3a4753;
-        }
+        .cta-btn:hover { background: #276a2d; }
+        /* 推荐区块 */
         .brain-games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 22px;
+            flex: 1 1 320px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #0001;
+            padding: 22px 18px 20px 18px;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+        .brain-games-grid h3 {
+            color: #43a047;
+            font-size: 1.32rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .brain-games-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px 9px;
             justify-content: center;
-            max-width: 800px;
-            margin: 0 auto 18px;
         }
         .brain-card {
-            background: #fafcff;
-            border-radius: 13px;
-            box-shadow: 0 2px 9px #0001;
-            padding: 22px 10px 16px;
-            border: 1px solid #ececec;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: box-shadow .22s;
+            background: #f5f8fd;
+            border-radius: 10px;
+            box-shadow: 0 1px 4px #0001;
+            padding: 13px 14px 17px 14px;
+            min-width: 138px;
+            max-width: 175px;
+            flex: 1 1 138px;
+            text-align: center;
         }
         .brain-card img {
-            margin-bottom: 7px;
-            width: 48px; height: 48px;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 6px;
         }
         .brain-card .title {
-            font-size: 1.12rem; font-weight: 600;
+            font-weight: bold;
+            font-size: 1.06rem;
+            color: #222;
+            margin-bottom: 3px;
         }
         .brain-card .desc {
-            font-size: 0.95rem; color: #555; margin-bottom: 10px;
+            color: #444;
+            font-size: 0.96rem;
+            margin-bottom: 10px;
         }
         .brain-card a {
-            background: #388e3c; color: #fff; font-weight: 500; border-radius: 6px;
-            text-decoration: none; padding: 8px 28px; display: inline-block; margin-top: 6px;
-            transition: .2s; border: none;
+            display: inline-block;
+            background: #388e3c;
+            color: #fff;
+            padding: 6px 22px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: background 0.17s;
         }
-        .brain-card a:hover { background: #2d7a2a;}
-        @media (max-width: 780px) {
-            header { padding: 24px 0 14px; }
-            section { padding: 26px 8px 18px 8px; }
-            .iframe-wrap { padding: 7px 0 7px 0; }
-            .container { max-width: 99vw;}
+        .brain-card a:hover { background: #276a2d; }
+
+        /* 介绍、规则、说明区块 */
+        section {
+            background: #fff;
+            border-radius: 13px;
+            box-shadow: 0 2px 12px #0001;
+            margin-bottom: 32px;
+            padding: 28px 24px 24px 24px;
+        }
+        h2 {
+            color: #1c2833;
+            margin-top: 0;
+            font-size: 1.28rem;
+            margin-bottom: 15px;
+        }
+        h3 { color: #388e3c; font-size: 1.08rem; margin-bottom: 8px;}
+        ul, .features-list, .rules-list, .tips-list { margin-top: 0; }
+        .features-list li,
+        .rules-list li,
+        .tips-list li { margin-bottom: 5px; }
+        .score-table {
+            border-collapse: collapse;
+            width: 98%;
+            max-width: 520px;
+            margin: 0 auto 14px auto;
+            background: #f8fff8;
+        }
+        .score-table th, .score-table td {
+            border: 1px solid #b8e0b8;
+            padding: 7px 10px;
+            text-align: left;
+        }
+        .score-table th {
+            background: #e1f5e5;
+            color: #388e3c;
+            font-weight: bold;
+            font-size: 1.06rem;
+        }
+        .score-table td {
+            font-size: 1rem;
+        }
+        .score-note {
+            color: #999;
+            font-size: 0.96rem;
+            margin: 7px auto 2px 0;
+            text-align: left;
+            max-width: 540px;
+        }
+        .faq-list dt { font-weight: bold; margin-top: 10px; }
+        .faq-list dd { margin: 0 0 6px 0; color: #444;}
+        footer {
+            text-align:center;
+            color:#888;
+            font-size:0.97rem;
+            margin:32px 0 14px;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="brand-title">24Solver</div>
-        <div class="subtitle">Play the classic 24 Points Game online. Instantly solve and master Make 24 puzzles with <b>24Solver</b> – your smartest online 24 game & calculator!</div>
+        <h1>24Solver</h1>
+        <div class="subtitle">
+            Play the classic 24 Points Game online. Instantly solve and master Make 24 puzzles with <b>24Solver</b> – your smartest online 24 game & calculator!
+        </div>
     </header>
     <div class="container">
-
-        <!-- Other Brain Games 推荐区 -->
-        <div style="margin: 38px 0 32px 0; text-align: center;">
-            <h3 style="color:#43a047; font-size:1.32rem; margin-bottom:18px; font-weight:700; letter-spacing:1px;">
-                Other Brain Games
-            </h3>
+        <div class="main-flex">
+            <!-- 左侧：游戏及说明 -->
+            <div class="game-section">
+                <h2>🎮 Play 24Solver Online</h2>
+                <div class="iframe-wrap">
+                    <iframe src="/game.html" title="24Solver Game" allowfullscreen></iframe>
+                </div>
+                <div class="cta-bar">
+                    <a href="#rules"><button class="cta-btn">Learn Game Rules</button></a>
+                </div>
+            </div>
+            <!-- 右侧：其他益智游戏 -->
             <div class="brain-games-grid">
-                <div class="brain-card">
-                    <img src="https://img.icons8.com/fluency/48/wordle.png" alt="Wordle">
-                    <div class="title">Wordle</div>
-                    <div class="desc">Guess the word in 6 tries</div>
-                    <a href="https://www.wordle.org/" target="_blank">Play</a>
-                </div>
-                <div class="brain-card">
-                    <img src="https://img.icons8.com/fluency/48/sudoku.png" alt="Sudoku">
-                    <div class="title">Sudoku</div>
-                    <div class="desc">Classic number puzzle</div>
-                    <a href="https://sudoku.com/" target="_blank">Play</a>
-                </div>
-                <div class="brain-card">
-                    <img src="https://img.icons8.com/fluency/48/2048.png" alt="2048">
-                    <div class="title">2048</div>
-                    <div class="desc">Slide & combine numbers</div>
-                    <a href="https://play2048.co/" target="_blank">Play</a>
-                </div>
-                <div class="brain-card">
-                    <img src="https://img.icons8.com/color/48/math.png" alt="Math 24">
-                    <div class="title">Math 24 (English)</div>
-                    <div class="desc">Classic 24 card game</div>
-                    <a href="https://www.mathplayground.com/logic24.html" target="_blank">Play</a>
+                <h3>Other Brain Games</h3>
+                <div class="brain-games-flex">
+                    <div class="brain-card">
+                        <img src="https://img.icons8.com/fluency/48/wordle.png" alt="Wordle">
+                        <div class="title">Wordle</div>
+                        <div class="desc">Guess the word in 6 tries</div>
+                        <a href="https://www.wordle.org/" target="_blank">Play</a>
+                    </div>
+                    <div class="brain-card">
+                        <img src="https://img.icons8.com/fluency/48/sudoku.png" alt="Sudoku">
+                        <div class="title">Sudoku</div>
+                        <div class="desc">Classic number puzzle</div>
+                        <a href="https://sudoku.com/" target="_blank">Play</a>
+                    </div>
+                    <div class="brain-card">
+                        <img src="https://img.icons8.com/fluency/48/2048.png" alt="2048">
+                        <div class="title">2048</div>
+                        <div class="desc">Slide & combine numbers</div>
+                        <a href="https://play2048.co/" target="_blank">Play</a>
+                    </div>
+                    <div class="brain-card">
+                        <img src="https://img.icons8.com/color/48/math.png" alt="Math 24">
+                        <div class="title">Math 24 (English)</div>
+                        <div class="desc">Classic 24 card game</div>
+                        <a href="https://www.mathplayground.com/logic24.html" target="_blank">Play</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Game Section -->
-        <section id="play-24solver">
-            <h2>🎮 Play 24Solver Online</h2>
-            <div class="iframe-wrap">
-                <iframe src="/game.html" title="24Solver Game" allowfullscreen></iframe>
-            </div>
-            <div class="cta-bar">
-                <a href="#rules"><button class="cta-btn">Learn Game Rules</button></a>
-            </div>
-        </section>
-
-        <!-- Features Section -->
+        <!-- 游戏说明/SEO区块 -->
         <section id="about-24solver">
             <h2>What is 24Solver?</h2>
             <p>
@@ -258,7 +296,7 @@
             </ul>
         </section>
 
-        <!-- Rules Section -->
+        <!-- 规则 -->
         <section id="rules">
             <h2>How to Play 24Solver – Rules & Gameplay</h2>
             <h3>Game Rules</h3>
@@ -276,7 +314,7 @@
             </p>
         </section>
 
-        <!-- Scoring Section -->
+        <!-- 积分/模式说明 -->
         <section id="scoring">
             <h2>Scoring System & Game Modes</h2>
             <p>
@@ -309,13 +347,16 @@
                     <td>+5</td>
                 </tr>
             </table>
+            <div class="score-note">
+                <b>Note:</b> These scoring modes are for future updates and SEO content. The current online solver is a free puzzle tool with unlimited attempts!
+            </div>
             <ul class="tips-list">
                 <li>Challenge yourself to find multiple solutions for bonus points!</li>
                 <li>Share your game and invite friends for friendly competition.</li>
             </ul>
         </section>
 
-        <!-- FAQ / Tips Section -->
+        <!-- FAQ / Tips -->
         <section id="faq">
             <h2>FAQ & Strategy Tips</h2>
             <dl class="faq-list">
@@ -342,7 +383,7 @@
             </dl>
         </section>
 
-        <!-- SEO Section -->
+        <!-- SEO区 -->
         <section id="seo-text">
             <h2>About 24Solver.org – The Best Make 24 Online Solver</h2>
             <p>
@@ -351,13 +392,11 @@
                 Start using <b>24Solver</b> now and join thousands of puzzle lovers worldwide!
             </p>
         </section>
-
-        <!-- Call to Action -->
         <div class="cta-bar">
             <a href="#play-24solver"><button class="cta-btn">Play Now – Try 24Solver!</button></a>
         </div>
-        <footer style="text-align:center; color:#888; font-size:0.97rem; margin:32px 0 14px;">
-            &copy; 2024 24Solver.org &nbsp;|&nbsp; All rights reserved.
+        <footer>
+            &copy; 2025 24Solver.org &nbsp;|&nbsp; All rights reserved.
         </footer>
     </div>
 </body>
